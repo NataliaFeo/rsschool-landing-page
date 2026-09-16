@@ -1,0 +1,911 @@
+/* ============================================================
+   DESIGN TOKENS
+   CSS custom properties for colors, radii and layout.
+   Dark theme overrides these values via [data-theme="dark"].
+   ============================================================ */
+:root {
+  /* Text */
+  --text-primary: #403f3d;
+  --text-inverse: #e1d4c9;
+  --text-accent: #b0907a;
+
+  /* Backgrounds */
+  --bg-page: #e1d4c9;
+  --bg-container: #665f55;
+  --bg-overlay: rgba(64, 63, 61, 0.8);
+
+  /* Borders */
+  --border-primary: #c1b6ad;
+  --border-inverse: #665f55;
+
+  /* Layout */
+  --radius: 40px;
+  --radius-sm: 20px;
+  --container-max: 1360px;
+  --container-pad: 40px;
+}
+
+[data-theme='dark'] {
+  --text-primary: #e1d4c9;
+  --text-inverse: #e1d4c9;
+  --text-accent: #b0907a;
+
+  --bg-page: #292826;
+  --bg-container: #403f3d;
+  --bg-overlay: rgba(41, 40, 38, 0.8);
+
+  --border-primary: #665f55;
+  --border-inverse: #c1b6ad;
+}
+
+/* ============================================================
+   RESET
+   Minimal, predictable base across browsers.
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   Fluid scale via clamp() so headings adapt without extra
+   media queries between breakpoints.
+   ============================================================ */
+h1,
+.h1 {
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+h2,
+.h2 {
+  font-size: clamp(32px, 4vw, 60px);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h3,
+.h3 {
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Accent emphasis — italic + brand accent color */
+em {
+  font-style: italic;
+  color: var(--text-accent);
+}
+
+/* ============================================================
+   LAYOUT
+   Centered content wrapper with max-width and safe side padding.
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+/* ============================================================
+   BUTTONS
+   Pill-shaped button used across the app.
+   ============================================================ */
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 640px;
+  padding: 100px 80px;
+  color: #fff;
+  background-color: #403f3d;
+  background-image: url('../assets/images/img-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px 40px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+
+  border: 1px solid var(--border-primary);
+  border-radius: 100px;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--small {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+
+  color: var(--text-primary);
+  background: none;
+  border: none;
+  border-radius: 0;
+
+  transition: color 0.2s ease;
+}
+
+.btn--hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-width: 200px;
+  min-height: 64px;
+
+  padding: 20px 78px;
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+
+  color: #403f3d;
+  background-color: #e1d4c9;
+
+  border: none;
+  border-radius: 100px;
+
+  transition: background-color 0.2s ease;
+}
+
+.btn--hero:hover {
+  background-color: #fff;
+}
+
+/* ============================================================
+   HEADER
+   Sticky top bar with logo, primary nav and actions.
+   ============================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  padding: 20px 0;
+
+  background-color: var(--bg-page);
+  transition: background-color 0.3s ease;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo__img {
+  width: 100px;
+  height: 60px;
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
+
+  /* Auto margins center the nav between logo and actions */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav__link {
+  font-size: 16px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover {
+  color: var(--text-accent);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* --- Theme toggle --- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  background: none;
+  border: none;
+
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+.theme-toggle__img {
+  display: block;
+  width: 60px;
+  height: auto;
+}
+
+/* Show only the relevant icon per theme */
+.theme-toggle__icon--moon {
+  display: block;
+}
+.theme-toggle__icon--sun {
+  display: none;
+}
+
+[data-theme='dark'] .theme-toggle__icon--moon {
+  display: none;
+}
+[data-theme='dark'] .theme-toggle__icon--sun {
+  display: block;
+}
+
+/* --- Burger (mobile only) --- */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+
+  padding: 8px;
+}
+
+.burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-primary);
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* ============================================================
+   HERO
+   Full-width rounded block with background image and CTA.
+   ============================================================ */
+.hero {
+  padding: 60px 0 0;
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 640px;
+  padding: 100px 80px;
+
+  color: #fff;
+
+  background-color: #403f3d;
+  background-image: url('../assets/images/img-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.hero__title {
+  max-width: 530px;
+  margin-bottom: 40px;
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 1.05;
+  color: #e1d4c9;
+}
+
+.hero__title em {
+  color: #b0907a;
+}
+
+.hero__text {
+  max-width: 530px;
+  margin-bottom: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ============================================================
+   SECTIONS
+   Shared vertical rhythm and section headings.
+   ============================================================ */
+section {
+  padding: 100px 0;
+}
+
+.section-title {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.section-title--left {
+  text-align: left;
+}
+
+/* ============================================================
+   FAVORITE COFFEE (slider)
+   ============================================================ */
+.favorite {
+  padding-top: 100px;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  margin-bottom: 40px;
+}
+
+.slider__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 60px;
+  height: 60px;
+
+  font-size: 20px;
+
+  border: 1px solid var(--text-primary);
+  border-radius: 50%;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.slider__arrow:hover {
+  color: var(--bg-page);
+  background-color: var(--text-primary);
+}
+
+.slider__track {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+/* Only one slide is visible at a time */
+.slide {
+  display: none;
+  max-width: 480px;
+  text-align: center;
+}
+
+.slide--active {
+  display: block;
+}
+
+.slide__image {
+  width: 320px;
+  height: 320px;
+  margin: 0 auto 20px;
+  object-fit: contain;
+}
+
+.slide__title {
+  margin-bottom: 16px;
+}
+
+.slide__text {
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.slide__price {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.slider__dot {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--border-primary);
+  transition: background-color 0.2s ease;
+}
+
+.slider__dot--active {
+  background-color: var(--text-primary);
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.about__col {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.about__img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.about__img--1 {
+  height: 590px;
+}
+
+.about__img--2 {
+  height: 430px;
+}
+
+.about__img--3 {
+  height: 430px;
+}
+
+.about__img--4 {
+  height: 590px;
+}
+/* ============================================================
+   MOBILE APP
+   Two-column section: copy on the left, devices on the right.
+   ============================================================ */
+.mobile__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.mobile__text {
+  margin: 40px 0;
+  opacity: 0.8;
+}
+
+.mobile__stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 24px;
+
+  border: 1px solid var(--text-primary);
+  border-radius: var(--radius-sm);
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.store-btn:hover {
+  color: var(--bg-page);
+  background-color: var(--text-primary);
+}
+
+.store-btn__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.store-btn__text small {
+  font-size: 10px;
+}
+
+.store-btn__text strong {
+  font-size: 14px;
+}
+
+.mobile__phones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* ============================================================
+   CONTACTS
+   Dark rounded card with offer and contact information.
+   ============================================================ */
+.contacts__card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+
+  padding: 100px;
+
+  color: #e1d4c9;
+  background-color: var(--bg-container);
+
+  border-radius: var(--radius);
+}
+
+.contacts__title {
+  margin-bottom: 40px;
+}
+
+.contacts__socials {
+  display: flex;
+  gap: 16px;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  border: 1px solid currentColor;
+  border-radius: 50%;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.social:hover {
+  color: var(--bg-container);
+  background-color: #e1d4c9;
+}
+
+.contacts__subtitle {
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+.contacts__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contacts__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contacts__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* ============================================================
+   CATALOG
+   Category filters and product grid.
+   ============================================================ */
+.catalog {
+  padding: 60px 0 100px;
+}
+
+.catalog__title {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.catalog__categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+
+  margin-bottom: 60px;
+}
+
+.category-btn {
+  padding: 12px 28px;
+
+  font-weight: 500;
+
+  border: 1px solid var(--border-primary);
+  border-radius: 100px;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.category-btn:hover {
+  background-color: var(--border-primary);
+}
+
+.category-btn--active {
+  color: var(--bg-page);
+  background-color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.card {
+  overflow: hidden;
+
+  background-color: var(--bg-page);
+
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.card__image {
+  width: 100%;
+  height: 240px;
+  padding: 20px;
+  object-fit: contain;
+}
+
+.card__title {
+  padding: 0 20px 8px;
+  font-size: 20px;
+}
+
+.card__desc {
+  padding: 0 20px 12px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.card__price {
+  display: block;
+  padding: 0 20px 20px;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  padding: 40px 0;
+
+  font-size: 14px;
+  text-align: center;
+  opacity: 0.7;
+
+  border-top: 1px solid var(--border-primary);
+}
+
+/* ============================================================
+   RESPONSIVE
+   Breakpoints: 1024px (tablet landscape),
+                900px  (tablet portrait / mobile nav),
+                600px  (small mobile).
+   ============================================================ */
+@media (max-width: 1024px) {
+  :root {
+    --container-pad: 32px;
+  }
+
+  .hero__inner {
+    min-height: 500px;
+    padding: 80px 60px;
+  }
+
+  .mobile__inner {
+    gap: 40px;
+  }
+
+  .contacts__card {
+    gap: 40px;
+    padding: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Switch to mobile navigation */
+  .nav {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  /* Stack the gallery into a single column */
+  .about__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .about__img {
+    height: 300px;
+  }
+
+  /* Stack mobile app section */
+  .mobile__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile__phones {
+    order: -1;
+  }
+
+  /* Stack contacts card */
+  .contacts__card {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --container-pad: 16px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  .hero__inner {
+    min-height: 420px;
+    padding: 60px 24px;
+    border-radius: 20px;
+  }
+
+  .hero__title,
+  .hero__text {
+    margin-bottom: 24px;
+  }
+
+  .hero__text {
+    font-size: 14px;
+  }
+
+  .slider {
+    gap: 12px;
+  }
+
+  .slider__arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .slide__image {
+    width: 220px;
+    height: 220px;
+  }
+
+  .contacts__card {
+    padding: 32px;
+    border-radius: 20px;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    font-size: 14px;
+  }
+}
