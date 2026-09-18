@@ -153,23 +153,6 @@ em {
    BUTTONS
    Pill-shaped button used across the app.
    ============================================================ */
-.hero__inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 640px;
-  padding: 100px 80px;
-  color: #fff;
-  background-color: #403f3d;
-  background-image: url('../assets/images/img-hero.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -212,6 +195,13 @@ em {
   border-radius: 0;
 
   transition: color 0.2s ease;
+}
+
+.btn__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 .btn--hero {
@@ -264,8 +254,7 @@ em {
   gap: 40px;
 }
 
-/* Logo */
-
+/* --- Logo --- */
 .logo {
   display: inline-flex;
   align-items: center;
@@ -279,9 +268,11 @@ em {
 
 .logo__img--light { display: block; }
 .logo__img--dark  { display: none; }
-[data-theme="dark"] .logo__img--light { display: none; }
-[data-theme="dark"] .logo__img--dark  { display: block; }
 
+[data-theme='dark'] .logo__img--light { display: none; }
+[data-theme='dark'] .logo__img--dark  { display: block; }
+
+/* --- Navigation --- */
 .nav {
   display: flex;
   gap: 40px;
@@ -309,6 +300,7 @@ em {
 
 /* --- Theme toggle --- */
 .theme-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -324,44 +316,67 @@ em {
   transform: scale(1.05);
 }
 
-.theme-toggle__img {
+.theme-toggle__bg {
   display: block;
   width: 60px;
   height: auto;
 }
 
-/* Show only the relevant icon per theme */
-.theme-toggle__icon--moon {
-  display: block;
-}
-.theme-toggle__icon--sun {
-  display: none;
+.theme-toggle__thumb {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+
+  width: 22px;
+  height: 22px;
+
+  background-color: #b0907a;
+  border-radius: 50%;
+
+  transition: transform 0.3s ease;
 }
 
-[data-theme='dark'] .theme-toggle__icon--moon {
-  display: none;
-}
-[data-theme='dark'] .theme-toggle__icon--sun {
-  display: block;
+[data-theme='dark'] .theme-toggle__thumb {
+  transform: translateX(30px);
 }
 
-/* --- Burger (mobile only) --- */
+/* --- Burger (mobile only): circle with two lines --- */
 .burger {
   display: none;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 
-  padding: 8px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+
+  border: 1px solid var(--text-primary);
+  border-radius: 50%;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.burger:hover {
+  background-color: var(--text-primary);
+}
+
+.burger:hover span {
+  background-color: var(--bg-page);
 }
 
 .burger span {
   display: block;
-  width: 24px;
+  width: 18px;
   height: 2px;
   background-color: var(--text-primary);
   transition:
     transform 0.3s ease,
-    opacity 0.3s ease;
+    opacity 0.3s ease,
+    background-color 0.2s ease;
 }
 
 /* ============================================================
@@ -376,6 +391,7 @@ em {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
 
   min-height: 640px;
   padding: 100px 80px;
@@ -395,7 +411,7 @@ em {
 .hero__title {
   max-width: 530px;
   margin-bottom: 40px;
-  font-size: 72px;
+  font-size: clamp(42px, 5vw, 72px);
   font-weight: 600;
   line-height: 1.05;
   color: #e1d4c9;
@@ -454,19 +470,27 @@ section {
   width: 60px;
   height: 60px;
 
-  font-size: 20px;
-
   border: 1px solid var(--text-primary);
   border-radius: 50%;
 
   transition:
     background-color 0.2s ease,
-    color 0.2s ease;
+    border-color 0.2s ease;
 }
 
 .slider__arrow:hover {
-  color: var(--bg-page);
   background-color: var(--text-primary);
+}
+
+.slider__arrow-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: filter 0.2s ease;
+}
+
+.slider__arrow:hover .slider__arrow-icon {
+  filter: invert(1);
 }
 
 .slider__track {
@@ -527,6 +551,7 @@ section {
 
 /* ============================================================
    ABOUT
+   Two-column gallery with asymmetric layout.
    ============================================================ */
 .about__gallery {
   display: grid;
@@ -548,21 +573,11 @@ section {
   border-radius: var(--radius-sm);
 }
 
-.about__img--1 {
-  height: 590px;
-}
+.about__img--1 { height: 590px; }
+.about__img--2 { height: 430px; }
+.about__img--3 { height: 430px; }
+.about__img--4 { height: 590px; }
 
-.about__img--2 {
-  height: 430px;
-}
-
-.about__img--3 {
-  height: 430px;
-}
-
-.about__img--4 {
-  height: 590px;
-}
 /* ============================================================
    MOBILE APP
    Two-column section: copy on the left, devices on the right.
@@ -573,11 +588,13 @@ section {
   gap: 100px;
   align-items: center;
 }
+
 .mobile .section-title {
   font-size: 60px;
   font-weight: 600;
   line-height: 1.25;
 }
+
 .mobile__text {
   font-size: 16px;
   font-weight: 400;
@@ -610,93 +627,28 @@ section {
   transform: translateY(-2px);
   opacity: 0.85;
 }
+
 .store-btn img {
   display: block;
   height: 64px;
   width: 200px;
+  object-fit: contain;
 }
+
 .mobile__phones {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
 
-/* ============================================================
-   CONTACTS
-   Dark rounded card with offer and contact information.
-   ============================================================ */
-.contacts__card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: center;
-
-  padding: 100px;
-
-  color: #e1d4c9;
-  background-color: var(--bg-container);
-
-  border-radius: var(--radius);
-}
-
-.contacts__title {
-  margin-bottom: 40px;
-}
-
-.contacts__socials {
-  display: flex;
-  gap: 16px;
-}
-
-.social {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 60px;
-  height: 60px;
-
-  border: 1px solid currentColor;
-  border-radius: 50%;
-
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
-}
-
-.social:hover {
-  color: var(--bg-container);
-  background-color: #e1d4c9;
-}
-
-.contacts__subtitle {
-  margin-bottom: 24px;
-  font-size: 24px;
-}
-
-.contacts__list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.contacts__item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.contacts__icon {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+.mobile__phone {
+  display: block;
+  width: 100%;
+  max-width: 630px;
+  height: auto;
   object-fit: contain;
 }
 
-/* ============================================================
-   CATALOG
-   Category filters and product grid.
-   ============================================================ */
 /* ============================================================
    CATALOG
    Category filters and product grid.
@@ -744,6 +696,7 @@ section {
   width: auto;
 }
 
+/* --- Grid: 4 columns --- */
 .catalog__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -756,7 +709,7 @@ section {
   flex-direction: column;
 
   padding: 20px;
-  height: 506px;
+  min-height: 500px;
 
   background-color: var(--bg-page);
   border: 1px solid var(--border-primary);
@@ -779,22 +732,23 @@ section {
 }
 
 .card__title {
-  margin: 0;
-  font-size: 20px;
+  margin-top: 20px;
+  font-size: 24px;
   font-weight: 600;
 }
 
 .card__desc {
-  margin: 0;
-  font-size: 14px;
+  margin: 20px 0 0;
+  font-size: 16px;
+  font-weight: 400;
   opacity: 0.8;
   line-height: 1.4;
 }
 
 .card__price {
   margin-top: auto;
-  padding-top: 8px;
-  font-size: 20px;
+  padding-top: 20px;
+  font-size: 24px;
   font-weight: 600;
 }
 
@@ -803,7 +757,7 @@ section {
    Dark rounded card with offer and contact information.
    ============================================================ */
 .footer {
-  padding: 100px 0 100px;
+  padding: 100px 0;
 }
 
 .footer__card {
@@ -814,7 +768,7 @@ section {
 
   padding: 100px;
 
-  color: #E1D4C9;
+  color: #e1d4c9;
   background-color: var(--bg-container);
 
   border-radius: var(--radius);
@@ -822,6 +776,12 @@ section {
 
 .footer__title {
   margin-bottom: 40px;
+  font-size: clamp(28px, 4vw, 44px);
+  white-space: nowrap;
+}
+
+.footer__title-accent {
+  display: block;
 }
 
 .footer__title em {
@@ -849,6 +809,12 @@ section {
 .social:hover {
   transform: translateY(-2px);
   opacity: 0.85;
+}
+
+.social:focus-visible {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 4px;
+  border-radius: 50%;
 }
 
 .social__icon {
@@ -884,31 +850,7 @@ section {
 }
 
 /* ============================================================
-   FOOTER media
-   ============================================================ */
-@media (max-width: 900px) {
-  .footer__card {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 40px;
-  }
-}
-
-@media (max-width: 600px) {
-  .footer {
-    padding: 60px 0;
-  }
-
-  .footer__card {
-    padding: 40px 24px;
-    border-radius: 20px;
-  }
-}
-/* ============================================================
    RESPONSIVE
-   Breakpoints: 1024px (tablet landscape),
-                900px  (tablet portrait / mobile nav),
-                600px  (small mobile).
    ============================================================ */
 @media (max-width: 1024px) {
   :root {
@@ -924,14 +866,19 @@ section {
     gap: 40px;
   }
 
-  .contacts__card {
+  .catalog__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .footer__card {
     gap: 40px;
     padding: 60px;
   }
 }
 
-@media (max-width: 900px) {
-  /* Switch to mobile navigation */
+@media (max-width: 768px) {
+  /* Mobile navigation */
   .nav {
     display: none;
   }
@@ -940,7 +887,12 @@ section {
     display: flex;
   }
 
-  /* Stack the gallery into a single column */
+  /* Header keeps only logo, theme toggle and burger */
+  .header .btn--small {
+    display: none;
+  }
+
+  /* Gallery to single column */
   .about__gallery {
     grid-template-columns: 1fr;
   }
@@ -949,7 +901,7 @@ section {
     height: 300px;
   }
 
-  /* Stack mobile app section */
+  /* Mobile app to single column */
   .mobile__inner {
     grid-template-columns: 1fr;
   }
@@ -958,17 +910,40 @@ section {
     order: -1;
   }
 
-  /* Stack contacts card */
-  .contacts__card {
+  /* Footer to single column */
+  .footer__card {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 40px;
+    padding: 60px 40px;
+  }
+
+  /* Catalog to 2 columns */
+  .catalog__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 380px) {
   :root {
     --container-pad: 16px;
+  }
+
+  /* Header: shrink so it fits 320-380px screens */
+  .header {
+    padding: 12px 0;
+  }
+
+  .header__inner {
+    gap: 16px;
+  }
+
+  .header__actions {
+    gap: 12px;
+  }
+
+  .logo__img {
+    width: 76px;
+    height: 46px;
   }
 
   section {
@@ -997,7 +972,11 @@ section {
   .slider__arrow {
     width: 40px;
     height: 40px;
-    font-size: 16px;
+  }
+
+  .slider__arrow-icon {
+    width: 16px;
+    height: 16px;
   }
 
   .slide__image {
@@ -1005,9 +984,41 @@ section {
     height: 220px;
   }
 
-  .contacts__card {
-    padding: 32px;
+  .mobile .section-title {
+    font-size: 32px;
+  }
+
+  .store-btn img {
+    height: 50px;
+    width: auto;
+  }
+
+  .catalog__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .card {
+    height: auto;
+    min-height: 480px;
+  }
+
+  .footer {
+    padding: 60px 0;
+  }
+
+  .footer__card {
+    padding: 40px 24px;
     border-radius: 20px;
+  }
+
+  .footer__socials {
+    gap: 12px;
+  }
+
+  .social__icon {
+    width: 48px;
+    height: 48px;
   }
 
   .btn {
