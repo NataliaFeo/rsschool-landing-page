@@ -264,15 +264,23 @@ em {
   gap: 40px;
 }
 
+/* Logo */
+
 .logo {
   display: inline-flex;
   align-items: center;
 }
 
 .logo__img {
-  width: 100px;
   height: 60px;
+  width: 100px;
+  display: block;
 }
+
+.logo__img--light { display: block; }
+.logo__img--dark  { display: none; }
+[data-theme="dark"] .logo__img--light { display: none; }
+[data-theme="dark"] .logo__img--dark  { display: block; }
 
 .nav {
   display: flex;
@@ -791,18 +799,111 @@ section {
 }
 
 /* ============================================================
-   FOOTER
+   FOOTER (Contacts)
+   Dark rounded card with offer and contact information.
    ============================================================ */
 .footer {
-  padding: 40px 0;
-
-  font-size: 14px;
-  text-align: center;
-  opacity: 0.7;
-
-  border-top: 1px solid var(--border-primary);
+  padding: 100px 0 100px;
 }
 
+.footer__card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+
+  padding: 100px;
+
+  color: #E1D4C9;
+  background-color: var(--bg-container);
+
+  border-radius: var(--radius);
+}
+
+.footer__title {
+  margin-bottom: 40px;
+}
+
+.footer__title em {
+  color: var(--text-accent);
+}
+
+.footer__socials {
+  display: flex;
+  gap: 16px;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.social__icon {
+  display: block;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.footer__subtitle {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* ============================================================
+   FOOTER media
+   ============================================================ */
+@media (max-width: 900px) {
+  .footer__card {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 60px 0;
+  }
+
+  .footer__card {
+    padding: 40px 24px;
+    border-radius: 20px;
+  }
+}
 /* ============================================================
    RESPONSIVE
    Breakpoints: 1024px (tablet landscape),

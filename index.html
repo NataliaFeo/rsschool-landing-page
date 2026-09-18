@@ -22,12 +22,17 @@
     </script>
   </head>
   <body>
+    <!-- ============ HEADER ============ -->
     <header class="header">
       <div class="container header__inner">
-        <a href="index.html" class="logo">
-          <img src="assets/images/logo-dark.png" alt="Coffee House Residence" class="logo__img" />
-        </a>
+        <a href="index.html" class="logo" aria-label="Coffee House Residence — home">
+          <img
+            src="assets/images/logo-dark.png"
+            alt="Coffee House Residence"
+            class="logo__img logo__img--light" />
 
+          <img src="assets/images/logo.png" alt="" class="logo__img logo__img--dark" />
+        </a>
         <nav class="nav" aria-label="Main navigation">
           <a href="#favorite" class="nav__link">Favorite coffee</a>
           <a href="#about" class="nav__link">About</a>
@@ -52,11 +57,11 @@
     </header>
 
     <main>
-      <!-- HERO -->
+      <!-- ============ HERO ============ -->
       <section class="hero">
         <div class="container">
           <div class="hero__inner">
-            <h1 class="hero__title"><em>Enjoy</em> premium coffee at our charming cafe</h1>
+            <h1 class="hero__title">Enjoy <em>premium</em> coffee at our charming cafe</h1>
             <p class="hero__text">
               With its inviting atmosphere and delicious coffee options, the Coffee House Resource
               is a popular destination for coffee lovers and those seeking a warm and inviting space
@@ -67,7 +72,7 @@
         </div>
       </section>
 
-      <!-- FAVORITE COFFEE -->
+      <!-- ============ FAVORITE COFFEE ============ -->
       <section id="favorite" class="favorite">
         <div class="container">
           <h2 class="section-title">Choose your <em>favorite</em> coffee</h2>
@@ -111,7 +116,7 @@
         </div>
       </section>
 
-      <!-- ABOUT -->
+      <!-- ============ ABOUT ============ -->
       <section id="about" class="about">
         <div class="container">
           <h2 class="section-title section-title--left">
@@ -132,7 +137,7 @@
         </div>
       </section>
 
-      <!-- MOBILE APP -->
+      <!-- ============ MOBILE APP ============ -->
       <section id="mobile" class="mobile">
         <div class="container mobile__inner">
           <div class="mobile__content">
@@ -157,59 +162,56 @@
           <div class="mobile__phones">
             <img
               src="assets/images/mobile-screens.png"
-              alt="Mobile app screen"
+              alt="Mobile app screens"
               class="mobile__phone" />
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACTS -->
-      <section id="contacts" class="contacts">
-        <div class="container">
-          <div class="contacts__card">
-            <div class="contacts__left">
-              <h2 class="contacts__title">Sip, Savor, Smile.<br /><em>It's coffee time!</em></h2>
-              <div class="contacts__socials">
-                <a href="#" class="social" aria-label="Twitter" target="_blank" rel="noopener">
-                  <img src="assets/images/button-icon-light-tw.png" alt="" class="social__icon" />
-                </a>
-                <a href="#" class="social" aria-label="Instagram" target="_blank" rel="noopener">
-                  <img src="assets/images/button-icon-light-inst.png" alt="" class="social__icon" />
-                </a>
-                <a href="#" class="social" aria-label="Facebook" target="_blank" rel="noopener">
-                  <img src="assets/images/button-icon-light-face.png" alt="" class="social__icon" />
-                </a>
-              </div>
-            </div>
-
-            <div class="contacts__right">
-              <h3 class="contacts__subtitle">Contact us</h3>
-              <ul class="contacts__list">
-                <li class="contacts__item">
-                  <img src="assets/images/pin-alt.png" alt="" class="contacts__icon" />
-                  <span>8558 Green Rd., LA</span>
-                </li>
-                <li class="contacts__item">
-                  <img src="assets/images/phone.png" alt="" class="contacts__icon" />
-                  <span>+1 (603) 555-0123</span>
-                </li>
-                <li class="contacts__item">
-                  <img src="assets/images/clock.png" alt="" class="contacts__icon" />
-                  <span>Mon–Sat: 9:00–23:00</span>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
+    <!-- ============ FOOTER (Contacts) ============ -->
+    <footer id="contacts" class="footer">
       <div class="container">
-        <p>© 2026 Coffee House</p>
+        <div class="footer__card">
+          <div class="footer__left">
+            <h2 class="footer__title">
+              Sip, Savor, Smile.<br />
+              <em>It's coffee time!</em>
+            </h2>
+
+            <div class="footer__socials">
+              <a href="#" class="social" aria-label="Twitter" target="_blank" rel="noopener">
+                <img src="assets/images/button-icon-light-tw.png" alt="" class="social__icon" />
+              </a>
+              <a href="#" class="social" aria-label="Instagram" target="_blank" rel="noopener">
+                <img src="assets/images/button-icon-light-inst.png" alt="" class="social__icon" />
+              </a>
+              <a href="#" class="social" aria-label="Facebook" target="_blank" rel="noopener">
+                <img src="assets/images/button-icon-light-face.png" alt="" class="social__icon" />
+              </a>
+            </div>
+          </div>
+
+          <div class="footer__right">
+            <h3 class="footer__subtitle">Contact us</h3>
+            <ul class="footer__list">
+              <li class="footer__item">
+                <img src="assets/images/pin-alt.png" alt="" class="footer__icon" />
+                <span>8558 Green Rd., LA</span>
+              </li>
+              <li class="footer__item">
+                <img src="assets/images/phone.png" alt="" class="footer__icon" />
+                <span>+1 (603) 555-0123</span>
+              </li>
+              <li class="footer__item">
+                <img src="assets/images/clock.png" alt="" class="footer__icon" />
+                <span>Mon–Sat: 9:00–23:00</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </footer>
-
-    <script src="js/"></script>
+    <script src="js/theme.js"></script>
   </body>
 </html>
