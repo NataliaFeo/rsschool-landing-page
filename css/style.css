@@ -565,8 +565,14 @@ section {
   gap: 100px;
   align-items: center;
 }
-
+.mobile .section-title {
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 1.25;
+}
 .mobile__text {
+  font-size: 16px;
+  font-weight: 400;
   margin: 40px 0;
   opacity: 0.8;
 }
@@ -580,37 +586,27 @@ section {
 .store-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
 
-  padding: 12px 24px;
-
-  border: 1px solid var(--text-primary);
-  border-radius: var(--radius-sm);
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
 
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .store-btn:hover {
-  color: var(--bg-page);
-  background-color: var(--text-primary);
+  transform: translateY(-2px);
+  opacity: 0.85;
 }
-
-.store-btn__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
+.store-btn img {
+  display: block;
+  height: 64px;
+  width: 200px;
 }
-
-.store-btn__text small {
-  font-size: 10px;
-}
-
-.store-btn__text strong {
-  font-size: 14px;
-}
-
 .mobile__phones {
   display: flex;
   justify-content: center;
@@ -693,94 +689,103 @@ section {
    CATALOG
    Category filters and product grid.
    ============================================================ */
+/* ============================================================
+   CATALOG
+   Category filters and product grid.
+   ============================================================ */
 .catalog {
   padding: 60px 0 100px;
 }
 
 .catalog__title {
-  margin-bottom: 40px;
+  max-width: 900px;
+  margin: 0 auto 40px;
   text-align: center;
 }
 
+/* --- Categories --- */
 .catalog__categories {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
 
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .category-btn {
-  padding: 12px 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  font-weight: 500;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 
-  border: 1px solid var(--border-primary);
-  border-radius: 100px;
-
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .category-btn:hover {
-  background-color: var(--border-primary);
+  transform: translateY(-2px);
 }
 
-.category-btn--active {
-  color: var(--bg-page);
-  background-color: var(--text-primary);
-  border-color: var(--text-primary);
+.category-btn__img {
+  display: block;
+  height: 40px;
+  width: auto;
 }
 
 .catalog__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 40px;
 }
 
+/* --- Card --- */
 .card {
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+  height: 506px;
 
   background-color: var(--bg-page);
-
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-sm);
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
 }
 
 .card__image {
   width: 100%;
-  height: 240px;
-  padding: 20px;
-  object-fit: contain;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
 }
 
 .card__title {
-  padding: 0 20px 8px;
+  margin: 0;
   font-size: 20px;
+  font-weight: 600;
 }
 
 .card__desc {
-  padding: 0 20px 12px;
+  margin: 0;
   font-size: 14px;
   opacity: 0.8;
+  line-height: 1.4;
 }
 
 .card__price {
-  display: block;
-  padding: 0 20px 20px;
-
+  margin-top: auto;
+  padding-top: 8px;
   font-size: 20px;
   font-weight: 600;
 }

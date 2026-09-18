@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coffee House. Menu</title>
-
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,16 +14,121 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <script>
-      (() => {
-        try {
-          const saved = localStorage.getItem('coffee-theme');
-          const system = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          document.documentElement.dataset.theme = saved || system;
-        } catch {
-          document.documentElement.dataset.theme = 'light';
-        }
+      (function () {
+        const saved = localStorage.getItem('coffee-theme');
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = saved || system;
       })();
     </script>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a href="index.html" class="logo">
+          <img src="assets/images/logo-dark.png" alt="Coffee House Residence" class="logo__img" />
+        </a>
+
+        <nav class="nav" aria-label="Main navigation">
+          <a href="index.html#favorite" class="nav__link">Favorite coffee</a>
+          <a href="index.html#about" class="nav__link">About</a>
+          <a href="index.html#mobile" class="nav__link">Mobile app</a>
+          <a href="index.html#contacts" class="nav__link">Contact us</a>
+        </nav>
+
+        <div class="header__actions">
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+            <img src="assets/images/theme-switch.png" alt="" class="theme-toggle__bg" />
+            <span class="theme-toggle__thumb"></span>
+          </button>
+          <button class="burger" type="button" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+          <a href="catalog.html" class="btn btn--small">
+            <span>Menu</span>
+            <img src="assets/images/coffee-cup.png" alt="" class="btn__icon" />
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- CATALOG -->
+      <section class="catalog">
+        <div class="container">
+          <h2 class="catalog__title">Behind each of our cups hides an <em>amazing surprise</em></h2>
+
+          <div class="catalog__categories">
+            <button class="category-btn category-btn--active" type="button" data-category="coffee">
+              <img src="assets/images/tab-item-coffe.png" alt="Coffee" class="category-btn__img" />
+            </button>
+            <button class="category-btn" type="button" data-category="tea">
+              <img src="assets/images/tab-item-tea.png" alt="" />
+            </button>
+            <button class="category-btn" type="button" data-category="dessert">
+              <img src="assets/images/tab-item-dessert.png" alt="" />
+            </button>
+          </div>
+
+          <div class="catalog__grid">
+            <article class="card" data-category="coffee">
+              <img src="assets/images/coffee-1.png" alt="Irish coffee" class="card__image" />
+              <h3 class="card__title">Irish coffee</h3>
+              <p class="card__desc">Fragrant coffee with Jameson Irish whiskey and whipped milk</p>
+              <span class="card__price">$7.00</span>
+            </article>
+
+            <article class="card" data-category="coffee">
+              <img src="assets/images/coffee-2.png" alt="Irish coffee" class="card__image" />
+              <h3 class="card__title">Irish coffee</h3>
+              <p class="card__desc">Fragrant coffee with Jameson Irish whiskey and whipped milk</p>
+              <span class="card__price">$7.00</span>
+            </article>
+
+            <article class="card" data-category="coffee">
+              <img src="assets/images/coffee-3.png" alt="Irish coffee" class="card__image" />
+              <h3 class="card__title">Irish coffee</h3>
+              <p class="card__desc">Fragrant coffee with Jameson Irish whiskey and whipped milk</p>
+              <span class="card__price">$7.00</span>
+            </article>
+
+            <article class="card" data-category="coffee">
+              <img src="assets/images/coffee-4.png" alt="Irish coffee" class="card__image" />
+              <h3 class="card__title">Irish coffee</h3>
+              <p class="card__desc">Fragrant coffee with Jameson Irish whiskey and whipped milk</p>
+              <span class="card__price">$7.00</span>
+            </article>
+
+            <article class="card" data-category="coffee">
+              <img src="assets/images/coffee-5.png" alt="Irish coffee" class="card__image" />
+              <h3 class="card__title">Irish coffee</h3>
+              <p class="card__desc">Fragrant coffee with Jameson Irish whiskey and whipped milk</p>
+              <span class="card__price">$7.00</span>
+            </article>
+
+            <article class="card" data-category="coffee">
+              <img src="assets/images/coffee-6.png" alt="Irish coffee" class="card__image" />
+              <h3 class="card__title">Irish coffee</h3>
+              <p class="card__desc">Fragrant coffee with Jameson Irish whiskey and whipped milk</p>
+              <span class="card__price">$7.00</span>
+            </article>
+
+            <article class="card" data-category="coffee">
+              <img src="assets/images/coffee-7.png" alt="Irish coffee" class="card__image" />
+              <h3 class="card__title">Irish coffee</h3>
+              <p class="card__desc">Fragrant coffee with Jameson Irish whiskey and whipped milk</p>
+              <span class="card__price">$7.00</span>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 Coffee House</p>
+      </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+  </body>
 </html>
