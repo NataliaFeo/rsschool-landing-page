@@ -266,11 +266,19 @@ em {
   display: block;
 }
 
-.logo__img--light { display: block; }
-.logo__img--dark  { display: none; }
+.logo__img--light {
+  display: block;
+}
+.logo__img--dark {
+  display: none;
+}
 
-[data-theme='dark'] .logo__img--light { display: none; }
-[data-theme='dark'] .logo__img--dark  { display: block; }
+[data-theme='dark'] .logo__img--light {
+  display: none;
+}
+[data-theme='dark'] .logo__img--dark {
+  display: block;
+}
 
 /* --- Navigation --- */
 .nav {
@@ -388,6 +396,7 @@ em {
 }
 
 .hero__inner {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -399,15 +408,26 @@ em {
   color: #fff;
 
   background-color: #403f3d;
-  background-image: url('../assets/images/img-hero.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
   border-radius: var(--radius);
   overflow: hidden;
 }
 
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 540px;
+}
 .hero__title {
   max-width: 530px;
   margin-bottom: 40px;
@@ -573,10 +593,18 @@ section {
   border-radius: var(--radius-sm);
 }
 
-.about__img--1 { height: 590px; }
-.about__img--2 { height: 430px; }
-.about__img--3 { height: 430px; }
-.about__img--4 { height: 590px; }
+.about__img--1 {
+  height: 590px;
+}
+.about__img--2 {
+  height: 430px;
+}
+.about__img--3 {
+  height: 430px;
+}
+.about__img--4 {
+  height: 590px;
+}
 
 /* ============================================================
    MOBILE APP
@@ -716,7 +744,9 @@ section {
   border-radius: var(--radius-sm);
 
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .card:hover {
@@ -803,7 +833,9 @@ section {
   border: none;
   border-radius: 0;
 
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .social:hover {
